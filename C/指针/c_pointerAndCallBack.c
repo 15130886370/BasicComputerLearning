@@ -20,6 +20,9 @@ c 函数指针与回调函数
 #include <stdio.h>
 #include <stdlib.h>
 
+void exchange();
+void change(int *p1, int *p2);
+
 int max(int x, int y)
 {
   return x > y ? x : y;
@@ -59,5 +62,24 @@ int main(void)
     printf("%d  ", myArray[i]);
   }
   printf("\n");
+
+  exchange();
   return 0;
+}
+
+void exchange()
+{
+  int a = 5, b = 3;
+  int *pa = &a, *pb = &b;
+
+  change(pa, pb);
+  printf("%d, %d\n", a, b);
+}
+
+void change(int *p1, int *p2)
+{
+  int *p;
+  *p = *p1;
+  *p1 = *p2;
+  *p2 = *p;
 }
